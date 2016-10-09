@@ -33,6 +33,7 @@
   (println "response data body:" body))
 
 
+
 (defn get-city-info-by-code [code]
   (println "fetching data for city by code code:" code)
 
@@ -40,14 +41,24 @@
                code
                "&APPID=9623ee0f87c52dff219723a1a9cf8ff4")
         data (client/get a)]
-    (println "performing http get to:" a)
+  data))
+
+
+(defn print-city-info-by-code [code]
+  (println "fetching data for city by code code:" code)
+
+  (let [data (get-city-info-by-code code)]
     (println "response data:" data)
     (print-city-data-response data)))
 
-;; get weather info for data entry [<city name> <city code>]
-(defn get-city-info-by-entry [city-entry]
-  (println "fetching data for city:" (first city-entry))
-  (get-city-info-by-code (second city-entry)))
+(defn get-city-info-by-name [city-name]
+  (println "fetching data for city:" city-name)
+  (let [code (get (get-city-codes-memo) (str/lower-case city-name))]
+    (println "requested city code:" code)
+    (if (nil? code)
+      "requested city code could not be resolved"
+      (get-city-info-by-code code))))
+
 
 
 

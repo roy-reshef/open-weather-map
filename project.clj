@@ -5,7 +5,11 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [clj-http "2.2.0"]
-                 [org.clojure/tools.cli "0.3.5"]]
+                 [org.clojure/tools.cli "0.3.5"]
+                 [ring/ring-jetty-adapter "1.4.0"]
+                 [compojure "1.5.1"]
+                 [ring/ring-defaults "0.2.1"]
+                 [hiccup "1.0.5"]]
   :main ^:skip-aot open-weather-map.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})
